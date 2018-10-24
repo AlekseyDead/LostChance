@@ -1,0 +1,61 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!78 &1
+TagManager:
+  serializedVersion: 2
+  tags:
+  - EnemyBlock
+  - EnemyAttack
+  - CPoint
+  - LINE
+  - BLOCKLINE
+  - FIGHTEndBlockPoint
+  layers:
+  - Default
+  - TransparentFX
+  - Ignore Raycast
+  - 
+  - Water
+  - UI
+  - 
+  - 
+  - ENEMY
+  - LINE
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  m_SortingLayers:
+  - name: Default
+    uniqueID: 0
+    locked: 0
+  - name: ForgeGround
+    uniqueID: 3249753555
+    locked: 0
+  - name: BackGround
+    uniqueID: 3493588775
+    locked: 0
+  - name: Front
+    uniqueID: 292755767
+    locked: 0
+  - name: FirstFront
+    uniqueID: 248715377
+    locked: 0
