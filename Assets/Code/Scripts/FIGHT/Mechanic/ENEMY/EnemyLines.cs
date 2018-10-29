@@ -14,9 +14,6 @@ public abstract class EnemyLines : MonoBehaviour {
 	public bool D565 = true;
 
 
-
-
-
 	public GameObject EnemyArrow;
 
  	public GameObject endPos;
@@ -25,7 +22,7 @@ public abstract class EnemyLines : MonoBehaviour {
 
 
 
-	private GameObject startPos;   
+	public GameObject startPos;   
 
 	private GameObject go;
 
@@ -127,7 +124,7 @@ public abstract class EnemyLines : MonoBehaviour {
 		angle = Mathf.Rad2Deg * Mathf.Atan (angle);
 		col.transform.Rotate (0, 0, angle);
 
-		col.tag = "EnemyBlock";
+
 
 		EnemyBlockMain ();
 	}
@@ -152,6 +149,17 @@ public abstract class EnemyLines : MonoBehaviour {
 
 	}
 
+
+
+
+
+
+
+
+
+
+
+
 	protected void ColliderToLinesUPDATE()
 	{
 
@@ -171,7 +179,7 @@ public abstract class EnemyLines : MonoBehaviour {
 		angle = Mathf.Rad2Deg * Mathf.Atan (angle);
 
 
-
+		col.tag = "EnemyBlock";
 
 
 
