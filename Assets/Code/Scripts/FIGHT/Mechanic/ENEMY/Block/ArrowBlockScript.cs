@@ -7,7 +7,7 @@ public class ArrowBlockScript : MonoBehaviour {
 
 
 	// Как быстро движется лазер
-	public float speed = 15.1f;
+	private float speed = 2.2f;
 
 
 

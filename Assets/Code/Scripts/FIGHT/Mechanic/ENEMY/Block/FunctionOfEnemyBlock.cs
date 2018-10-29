@@ -5,7 +5,7 @@ using UnityEngine;
 public class FunctionOfEnemyBlock : EnemyLines{
 
 
-
+	bool D1;
 
 	// Use this for initialization
 	void Start () {
@@ -19,7 +19,7 @@ public class FunctionOfEnemyBlock : EnemyLines{
 		CreateOfFightEndBlockPointAndLineAndColliderToLinesCreate (8);
 
 
-
+	
 
 
 	}
@@ -40,7 +40,7 @@ public class FunctionOfEnemyBlock : EnemyLines{
 
 
 
-
+		CheckWithLinecast ();
 
 
 
@@ -48,6 +48,30 @@ public class FunctionOfEnemyBlock : EnemyLines{
 
 
 
+	void CheckWithLinecast()
+	{
+		
+
+			var HIT = Physics2D.Linecast (startPos.transform.position, ABCD.transform.position, 2048); 
+
+
+
+			if (HIT) {
+
+
+
+
+
+
+				GameObject.Find ("MATH").GetComponent<FunctionOfAttack> ().FailedAttackLine ();
+				//GameObject.Find ("MATH").GetComponent<FunctionOfAttack> ().NotRealEndOfHeroAttack ();
+
+
+
+			}
+
+
+	}
 
 
 
