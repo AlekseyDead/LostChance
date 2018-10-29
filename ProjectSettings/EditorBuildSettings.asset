@@ -4,4 +4,7 @@
 EditorBuildSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 2
-  m_Scenes: []
+  m_Scenes:
+  - enabled: 1
+    path: Assets/DEVDungeonWAR1PRE.unity
+    guid: 7ee162adb409b9e499d9f9e5acf195b0
