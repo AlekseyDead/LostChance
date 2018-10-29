@@ -4,8 +4,8 @@ using UnityEngine;
 
 public class StandartAI : MonoBehaviour {
 
-	private float AttackCouldownReal = 2f;
-	private float BlockCouldownReal = 2f;
+	private float AttackCouldownReal = 0.7f;
+	private float BlockCouldownReal = 0.1f;
 
 	private float AttackCouldown = 0.0f;
 	private float BlockCouldown = 0.0f;
@@ -17,10 +17,16 @@ public class StandartAI : MonoBehaviour {
 	Vector2 FODOH1;
 
 	public GameObject AreaOfEnemyColider1;
-	public GameObject AreaOfEnemyColider2;
-	public GameObject AreaOfEnemyColider3;
 
-	public GameObject AttackPoint1;
+
+	public GameObject[] AttackPoint = new GameObject[3];
+
+
+
+	private GameObject RealAttackPoint;
+
+
+
 	public GameObject StartAttackBorder;
 	public GameObject BlockPoint1;
 	public GameObject StartBlockBorder;
@@ -70,15 +76,15 @@ public class StandartAI : MonoBehaviour {
 		}
 
 
-		if ((AttackCouldown > 0) && (BlockCouldown<=0) && (AttackCouldown <=1) && (D1))
-		{   
+		//if ((AttackCouldown > 0) && (BlockCouldown<=0) && (AttackCouldown <=1) && (D1))
+		//{   
 
 
-			D1 = false;
+			//D1 = false;
 
-			DoBlock ();
+			//DoBlock ();
 
-		}
+		//}
 
 
 
@@ -112,7 +118,10 @@ public class StandartAI : MonoBehaviour {
 	{
 
 
-		Instantiate (StartAttackBorder, AttackPoint1.transform.position, AttackPoint1.transform.rotation);
+
+
+		RealAttackPoint = AttackPoint [Random.Range (0,3)];
+		Instantiate (StartAttackBorder, RealAttackPoint.transform.position, RealAttackPoint.transform.rotation);
 
 		///У нас есть 2 точки атаки предположим
 		/// Рандомно или нет выбираем одну из 2 точек
@@ -175,10 +184,9 @@ public class StandartAI : MonoBehaviour {
 		FODOH2=FODOH2-FODOH1;
 
 
-		var HIT = Physics2D.Raycast(FODOH1, FODOH2 , 10f);
+		var HIT = Physics2D.Raycast(FODOH1, FODOH2 , 4f, 1024);
 
-		Debug.Log (FODOH1);
-		Debug.Log (FODOH2);
+
 
 
 
@@ -190,38 +198,51 @@ public class StandartAI : MonoBehaviour {
 
 
 
-			if (HIT.collider.name=="AreaOfEnemyColider1") 
-			{
 
 
-				Instantiate (StartBlockBorder, AreaOfEnemyColider1.transform.position, AreaOfEnemyColider1.transform.rotation);
+
+			float IBBx=HIT.transform.position.x;
+			float IBBy=HIT.transform.position.y;
+
+
+
+
+
+
+
+
+
+
+
+			var SF = HIT.transform.eulerAngles;
+
+			SF.z += -45;
+
+
+
+
+			Quaternion SD = Quaternion.Euler (SF);
+
+
+
+
+
+			if (D1) {
+				GameObject ABC = Instantiate (StartBlockBorder, new Vector2 (IBBx, IBBy), SD, HIT.transform);
 				D1 = false;
-
-
-			}
-			if (HIT.collider.name=="AreaOfEnemyColider2") 
-			{
-
-
-				Instantiate (StartBlockBorder, AreaOfEnemyColider2.transform.position, AreaOfEnemyColider2.transform.rotation);
-				D1 = false;
-
-
-			}
-			if (HIT.collider.name=="AreaOfEnemyColider3") 
-			{
-
-
-				Instantiate (StartBlockBorder, AreaOfEnemyColider3.transform.position, AreaOfEnemyColider3.transform.rotation);
-				D1 = false;
-
-
+				ABC.transform.localPosition += new Vector3 (0, 1.2f, 0);
 			}
 
+				
+
+
+			
+		
 
 
 
-		}
+
+		}	
 
 
 
