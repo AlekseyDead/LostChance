@@ -22,7 +22,7 @@ GameObject:
   - component: {fileID: 114138140361846306}
   m_Layer: 8
   m_Name: II.EnemyBlock
-  m_TagString: EnemyBlock
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
