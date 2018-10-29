@@ -21,8 +21,8 @@ TagManager:
   - 
   - ENEMY
   - LINE
-  - 
-  - 
+  - AreaOfEnemyCollider
+  - HeroAttack
   - 
   - 
   - 
@@ -58,4 +58,10 @@ TagManager:
     locked: 0
   - name: FirstFront
     uniqueID: 248715377
+    locked: 0
+  - name: FRONT
+    uniqueID: 88284997
+    locked: 0
+  - name: FIRSTFRONT
+    uniqueID: 3570229253
     locked: 0
