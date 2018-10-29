@@ -10,19 +10,24 @@ public class FunctionOfAttack : MonoBehaviour {
 
 
 
-	public bool D899 = false; //врубает режим блока
+	public bool D899 = false; 
 
 	/// <summary>
 	/// The bug S killer.
 	/// </summary>
 	public GameObject BugSKiller;
-	bool D1=false;
+	public	bool D1=false;
 	bool D2=false;
 	bool D3=false;
 	bool D23=true;
 	bool D4=false;
 	bool D5 = true;
-	bool D6 = false;
+	bool D778 = true;
+
+
+	int RNumberOfAttackSegments=2;
+	int NumberOfAttackSegments;
+
 	bool D25 = false;
 
 
@@ -77,7 +82,7 @@ public class FunctionOfAttack : MonoBehaviour {
 	public Vector3 startPos;    
 	private Vector3 endPos;
 
-	private GameObject[] COLES = new GameObject[4];
+	private GameObject[] COLES = new GameObject[10];
 
 
 	// Use this for initialization
@@ -142,6 +147,7 @@ public class FunctionOfAttack : MonoBehaviour {
 				
 
 				FailedAttackLine ();
+
 				D678 = false;
 				line.SetPosition (1, HIT.point);
 				return false;
@@ -213,50 +219,16 @@ public class FunctionOfAttack : MonoBehaviour {
 
 						}
 
-						xD1 = worldPos.x;
-						yD1 = worldPos.y;
-
-
-
-						if (Vector3.Distance (worldPos, CurrentFirstPoint) >= 1) {
 
 
 
 
-
-							if (D2 == false) {
-						
-
-
-								LinearEquations ();
-
-
-								D2 = true;
-								D23 = false;
-
-
-
-								CurrentFirstPoint = worldPos;
-								line.SetPosition (1, worldPos);
-								endPos = worldPos;
-								ColliderToLines ();
-								createLine ();
-								line.SetPosition (0, worldPos);
-								line.SetPosition (1, worldPos);
-								startPos = worldPos;
-								D6 = true;
-
-
-							}
-						}
+						BuildingOfNumberSegments ();
 
 						worldPos = Input.mousePosition;
 						worldPos = Camera.main.ScreenToWorldPoint (worldPos);
 
-						if (D6) {
-
-
-						}
+					
 
 						if (D23 == false) {
 
@@ -265,10 +237,14 @@ public class FunctionOfAttack : MonoBehaviour {
 							xD1 = worldPos.x;
 							yD1 = worldPos.y;
 
+
+
+
+
 							if (Vector3.Distance (worldPos, CurrentFirstPoint) >= 1) {
 				
 								if (D3 == false) {
-									D6 = false;
+
 
 
 									LinearEquations ();
@@ -306,6 +282,9 @@ public class FunctionOfAttack : MonoBehaviour {
 	void StartAttack()
 	{   if (D899) {
 			if (Input.GetKeyDown (KeyCode.Mouse0)) {
+
+
+				NumberOfAttackSegments=RNumberOfAttackSegments;
 
 				D678 = true;
 				D25 = true;
@@ -368,12 +347,6 @@ public class FunctionOfAttack : MonoBehaviour {
 			K = yD2 / xD2;
 		}
 
-
-
-
-	
-
-
 		//1=x2+y2
 		//y=kx
 
@@ -391,7 +364,6 @@ public class FunctionOfAttack : MonoBehaviour {
 
 			}
 
-		
 		}
 
 		else 
@@ -412,20 +384,15 @@ public class FunctionOfAttack : MonoBehaviour {
 
 		}
 
-
 		yD3+=yD0;
 
 		worldPos.x = xD3;
 		worldPos.y = yD3;
-
-	
-
-		GameObject CCPPooiinntt=Instantiate (CPoint, new Vector2 (xD3, yD3), Quaternion.identity);
-
-
-		EennddPPooiinntt.GetComponent<DestroyingOfPoints> ().FRIS[i66]=CCPPooiinntt;
+		GameObject CCPPooiinntt=Instantiate (CPoint, new Vector2 (xD3, yD3), Quaternion.identity);  
+ 	    EennddPPooiinntt.GetComponent<DestroyingOfPoints> ().FRIS[i66]=CCPPooiinntt;
 		i66++;
 
+		CurrentFirstPoint = worldPos;
 	}
 
 
@@ -452,9 +419,6 @@ public class FunctionOfAttack : MonoBehaviour {
 				KillingOfPoints ();
 				D25 = false;
 
-			
-
-
 
 
 
@@ -468,23 +432,11 @@ public class FunctionOfAttack : MonoBehaviour {
 	{    
 		i66 = 0;
 		i67 = 0;
-
-
-		EennddPPooiinntt.GetComponent<DestroyingOfPoints> ().DIEDIEDIE ();
-
-
-
-		//ссылка на точку и по ней запускается функция на точке
-
-
-		///Так ну для начала - нужно проверить, - просто тупо здесь как бы создаётся 
-
-		/// Иф удар прошёл - запускается это функция (в ней хранятся ссылки на последние созданные точки)
-		/// Смотрится по какой линии прошёл удар - удаляется соответствующая созданная точка
-		///
-
-
-
+	EennddPPooiinntt.GetComponent<DestroyingOfPoints> ().DIEDIEDIE ();
+	//ссылка на точку и по ней запускается функция на точке
+	///Так ну для начала - нужно проверить, - просто тупо здесь как бы создаётся 
+    /// Иф удар прошёл - запускается это функция (в ней хранятся ссылки на последние созданные точки)
+    /// Смотрится по какой линии прошёл удар - удаляется соответствующая созданная точка
 	}
 
 
@@ -503,11 +455,11 @@ public class FunctionOfAttack : MonoBehaviour {
 		line.endColor = GameObject.Find ("MATH").GetComponent<LineRenderer> ().endColor;
 	
 		line.useWorldSpace = true;
-		line.sortingLayerName ="FRONT";
+		line.sortingLayerName ="FirstFront";
 
 
 		GameObject LineWithBox = fine;
-		EennddPPooiinntt.GetComponent<DestroyingOfPoints> ().FRIS2[i67]=LineWithBox;
+ 		EennddPPooiinntt.GetComponent<DestroyingOfPoints> ().FRIS2[i67]=LineWithBox;
 		i67++;
 
 	}
@@ -520,7 +472,7 @@ public class FunctionOfAttack : MonoBehaviour {
 
 		GameObject RealColider = new GameObject();
 		BoxCollider2D col = RealColider.AddComponent<BoxCollider2D> ();
-
+		RealColider.layer = 11;
 		col.transform.parent = line.transform; // Collider is added as child object of line
 		float lineLength = Vector3.Distance (startPos, endPos); // length of line
 		col.size = new Vector3 (lineLength, 0.1f, 1f); // size of collider is set where X is length of line, Y is width of line, Z will be set as per requirement
@@ -537,27 +489,8 @@ public class FunctionOfAttack : MonoBehaviour {
 		COLES [i88] = RealColider;
 		i88++;
 
+
 	}
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 
@@ -575,12 +508,23 @@ public class FunctionOfAttack : MonoBehaviour {
 			RealColiderOfHeroAttack=Instantiate (COLES[i99]);
 			RealColiderOfHeroAttack.tag="LINE";
 			Destroy (RealColiderOfHeroAttack,1);
+			COLES [i99].layer = 0;
 		}
 		i88 = 0;
 
 
 
 	}
+
+
+	//public void NotRealEndOfHeroAttack()
+	//{
+	//	for (int i99 = 0; i99 < i88; i99++) {
+	//
+	//		COLES [i99].layer = 0;
+	//	}
+	//	i88 = 0;
+	//}
 
 
 
@@ -591,10 +535,6 @@ public class FunctionOfAttack : MonoBehaviour {
 	public void FailedAttackLine()
 	{
 
-
-
-
-
 		GameObject BugKiller = Instantiate (BugSKiller);
 		Destroy (BugKiller, 0.1f);
 		D1 = false;
@@ -604,14 +544,67 @@ public class FunctionOfAttack : MonoBehaviour {
 		D23 = true;
 		D5 = true;
 
-	
 		KillingOfPoints ();
 		D25 = false;
 		i88 = 0;
 
+	}
 
 
 
+
+	private void BuildingOfNumberSegments()
+	{
+
+		if (NumberOfAttackSegments == 0) {
+			D23 = false;
+		}
+		else
+		{
+			
+
+		if (Vector3.Distance (worldPos, CurrentFirstPoint) >= 1) {
+				xD0 = CurrentFirstPoint.x;
+				yD0 = CurrentFirstPoint.y;
+				xD1 = worldPos.x;
+				yD1 = worldPos.y;
+
+				if (D778)
+				{
+					D778 = false;
+
+
+					if (D2 == false) {
+						
+
+
+						NumberOfAttackSegments--;
+						LinearEquations ();
+
+
+
+
+
+
+
+
+
+						line.SetPosition (1, worldPos);
+						endPos = worldPos;
+						ColliderToLines ();
+						createLine ();
+						line.SetPosition (0, worldPos);
+						line.SetPosition (1, worldPos);
+						startPos = worldPos;
+						D778 = true;
+
+
+
+					}
+
+				}
+			}
+		}
 	}
 
 

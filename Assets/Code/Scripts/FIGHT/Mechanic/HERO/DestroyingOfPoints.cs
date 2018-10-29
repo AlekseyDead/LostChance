@@ -5,8 +5,8 @@ using UnityEngine;
 public class DestroyingOfPoints : MonoBehaviour {
 	private float lifetime = 1.0f;
 
-	public GameObject[] FRIS = new GameObject[4];
-	public GameObject[] FRIS2 = new GameObject[3];
+	public GameObject[] FRIS = new GameObject[10];
+	public GameObject[] FRIS2 = new GameObject[10];
 
 
 
@@ -32,9 +32,14 @@ public class DestroyingOfPoints : MonoBehaviour {
 		Destroy (FRIS[0], lifetime);
 		Destroy (FRIS[1], lifetime);
 		Destroy (FRIS[2], lifetime);
+		Destroy (FRIS[3], lifetime);
+		Destroy (FRIS[4], lifetime);
 
 		Destroy (FRIS2[0], lifetime);
 		Destroy (FRIS2[1], lifetime);
+		Destroy (FRIS2[2], lifetime);
+		Destroy (FRIS2[3], lifetime);
+		Destroy (FRIS2[4], lifetime);
 
 		Destroy (gameObject, lifetime);
 
